@@ -176,13 +176,13 @@
 			"<span class='warning'>You hear a zapping sound.</span>" \
 		)
 
-	if((shock_damage <= 16) && (shock_damage >= 20))
+	if((shock_damage > 16) && (shock_damage < 20))
 		Stun(2)
-	else if((shock_damage <= 21) &&  (shock_damage >= 25))
+	else if((shock_damage > 20) &&  (shock_damage < 25))
 		Weaken(2)
-	if((shock_damage <= 26) &&  (shock_damage >= 30))
+	else if((shock_damage > 25) &&  (shock_damage < 30))
 		Weaken(5)
-	if(shock_damage > 31)
+	else if(shock_damage > 30)
 		Weaken(10) //This should work for now, more is really silly and makes you lay there forever
 
 	make_jittery(min(shock_damage*5, 200))
