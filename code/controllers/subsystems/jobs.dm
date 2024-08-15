@@ -263,8 +263,6 @@ SUBSYSTEM_DEF(jobs)
 				if(!V.client) continue
 				var/age = V.client.prefs.age
 				if(age < job.minimum_character_age) // Nope.
-					continue
-				switch(age)
 					if(job.minimum_character_age to (job.minimum_character_age+10))
 						weightedCandidates[V] = 3 // Still a bit young.
 					if((job.minimum_character_age+10) to (job.ideal_character_age-10))
@@ -559,7 +557,7 @@ SUBSYSTEM_DEF(jobs)
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
-	
+
 	job.post_equip_rank(H)
 
 	return H
