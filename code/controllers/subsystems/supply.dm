@@ -205,7 +205,7 @@ SUBSYSTEM_DEF(supply)
 			return export
 
 		if("xenobiology")
-			export = new /datum/export_order/static()
+			export = new /datum/export_order/static_one()
 			export.typepath = /obj/item/slime_extract
 			export.name = "Order for slime extracts of any type. Payment depends on the rarity of the extract."
 			export.order_type = typee
@@ -249,7 +249,7 @@ SUBSYSTEM_DEF(supply)
 			return export
 
 		if(MATERIAL_BSPACE_CRYSTAL)
-			export = new /datum/export_order/static()
+			export = new /datum/export_order/static_one()
 			export.typepath = /obj/item/bluespace_crystal
 			export.name = "Order for bluespace crystals. $$500 per crystal."
 			export.order_type = typee
@@ -504,9 +504,9 @@ SUBSYSTEM_DEF(supply)
 
 /obj/var/export_value = 10
 
-/datum/export_order/static
+/datum/export_order/static_one
 
-/datum/export_order/static/fill(var/obj/structure/closet/crate)
+/datum/export_order/static_one/fill(var/obj/structure/closet/crate)
 	var/filled = 0
 	var/total = 0
 	var/list/filling = list()
