@@ -90,7 +90,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/after_load()
 	icon_state = "[d1]-[d2]"
-	
+
 	var/turf/T = src.loc			// hide if turf is not intact
 	if(T)
 		if(level==1) hide(!T.is_plating())
@@ -513,7 +513,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/thirty
 	amount = 30
-	
+
 
 /obj/item/stack/cable_coil/single/New(var/loc, var/amount = 1, var/param_color = null)
 	..(loc, amount, param_color)
@@ -629,7 +629,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 	else
 		to_chat(usr, "<span class='notice'>You cannot do that.</span>")
-	..()
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"

@@ -185,7 +185,6 @@
 	QDEL_NULL(spark_system)
 
 	mechas_list -= src //global mech list
-	. = ..()
 
 ////////////////////////
 ////// Helpers /////////

@@ -262,20 +262,20 @@ SUBSYSTEM_DEF(jobs)
 				// Log-out during round-start? What a bad boy, no head position for you!
 				if(!V.client) continue
 				var/age = V.client.prefs.age
-				if(age < job.minimum_character_age) // Nope.
-					if(job.minimum_character_age to (job.minimum_character_age+10))
-						weightedCandidates[V] = 3 // Still a bit young.
-					if((job.minimum_character_age+10) to (job.ideal_character_age-10))
-						weightedCandidates[V] = 6 // Better.
-					if((job.ideal_character_age-10) to (job.ideal_character_age+10))
-						weightedCandidates[V] = 10 // Great.
-					if((job.ideal_character_age+10) to (job.ideal_character_age+20))
-						weightedCandidates[V] = 6 // Still good.
-					if((job.ideal_character_age+20) to INFINITY)
+				if(age >= job.minimum_character_age) // At least.
+					if(age >= (job.ideal_character_age+20))
 						weightedCandidates[V] = 3 // Geezer.
+					else if(age >= (job.ideal_character_age+10))
+						weightedCandidates[V] = 6 // Still good.
+					else if(age >= (job.ideal_character_age-10))
+						weightedCandidates[V] = 10 // Great.
+					else if(age >= (job.minimum_character_age+10))
+						weightedCandidates[V] = 6 // Better.
 					else
-						// If there's ABSOLUTELY NOBODY ELSE
-						if(candidates.len == 1) weightedCandidates[V] = 1
+						weightedCandidates[V] = 3 // Still a bit young.
+				//else
+				//		If there's ABSOLUTELY NOBODY ELSE
+				//		if(candidates.len == 1) weightedCandidates[V] = 1
 			var/mob/new_player/candidate = pickweight(weightedCandidates)
 			if(assign_role(candidate, command_position))
 				return 1
