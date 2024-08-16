@@ -35,7 +35,7 @@
 /obj/structure/wall_frame/Initialize()
 	if(!material)
 		material = DEFAULT_WALL_MATERIAL
-		
+
 	if(istext(material))
 		material = SSmaterials.get_material_by_name(material)
 
@@ -100,6 +100,7 @@
 	overlays.Cut()
 	var/image/I
 
+	var/material/material = SSmaterials.get_material_by_name(src.material)
 	var/new_color = (paint_color ? paint_color : material.icon_colour)
 	color = new_color
 
