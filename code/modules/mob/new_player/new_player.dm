@@ -493,7 +493,7 @@
 	if (!Retrieve_Record(character.real_name))
 		var/datum/computer_file/report/crew_record/new_record = CreateModularRecord(character)
 		GLOB.all_crew_records |= new_record
-	
+
 	var/turf/spawnTurf = null //Don't start with a turf in there, so we can tell if something goes wrong
 	var/errored_on_spawn = FALSE
 
@@ -580,7 +580,7 @@
 			log_and_message_admins("[character.ckey]'s [character] can't find a lace storage to spawn at! Make sure there's one on the map! Will spawn in the middle of z-level 1 instead!")
 			spawnTurf = locate(world.maxx / 2, world.maxy / 2, 1)
 			errored_on_spawn = TRUE
-	
+
 	// --- When something goes wrong ----
 	else
 		log_error("Invalid spawn type for '[character]', ckey: '[character.ckey]'. Spawning to middle of Z-level 1!")
@@ -595,10 +595,11 @@
 		mind.active = 1
 		mind.original = character
 		mind.transfer_to(character)	//won't transfer key since the mind is not active
+	else
+		character.key = key
 
 	character.forceMove(spawnTurf)
 	character.stored_ckey = key
-	character.key = key
 	character.save_slot = chosen_slot
 
 	//Make sure dna is spread to limbs
@@ -622,7 +623,7 @@
 	if(record2)
 		for(var/friend in record2.all_friends)
 			notify_lace(friend, "Your neural lace lets you know that [real_name] has just come out of cryosleep.")
-		
+
 /mob/proc/finishLoadCharacter()
 	if(spawn_type == CHARACTER_SPAWN_TYPE_CRYONET || spawn_type == CHARACTER_SPAWN_TYPE_PERSONAL)
 		to_chat(src, "You eject from your cryosleep, ready to resume life in the frontier.")
